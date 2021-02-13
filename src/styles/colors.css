@@ -1,0 +1,12 @@
+.bg-primary{
+    background-color: white;
+}
+.bg-primary.contrast-text{
+    color: black;
+}
+.bg-secondary{
+    background-color: #EB5757;
+}
+.bg-secondary.contrast-text{
+    color: white;
+}

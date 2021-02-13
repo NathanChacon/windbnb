@@ -1,0 +1,22 @@
+.main-container{
+    width: 100%;
+    min-height: 100vh;
+}
+.d-flex{
+    display: flex;
+}
+.d-flex.align-items-center{
+    align-items: center;
+}
+.d-flex.justify-content-center{
+    justify-content: center;
+}
+.d-flex.d-flex.justify-content-space-between{
+    justify-content: space-between;
+}
+.d-flex.row{
+    flex-direction: row;
+}
+.d-flex.col{
+    flex-direction: column;
+}

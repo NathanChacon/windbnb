@@ -1,0 +1,10 @@
+.cards-container{
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 210px;
+    padding-right: 20px;
+    padding-left: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: auto;
+}
