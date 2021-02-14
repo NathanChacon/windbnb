@@ -1,5 +1,7 @@
 import Logo from '../../assets/images/logo.svg'
 import {useState, useEffect} from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import  './SearchBar.css'
 function SearchBar(props){
     const [isSearchActivated, setIsSearchActivated] = useState(false)
@@ -43,7 +45,10 @@ function SearchBar(props){
                         <ul>
                             {
                                 listData.map((list) => {
-                                    return <li>{list.title}</li>
+                                    return <li>
+                                                <FontAwesomeIcon style={{marginRight:'5px'}} icon={faMapMarkerAlt} />
+                                                {list.title}
+                                            </li>
                                 })
                             }
                         </ul>
