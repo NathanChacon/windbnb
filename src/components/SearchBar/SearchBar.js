@@ -1,10 +1,15 @@
 import Logo from '../../assets/images/logo.svg'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import  './SearchBar.css'
 function SearchBar(props){
     const [isSearchActivated, setIsSearchActivated] = useState(false)
+    const [listData, setListData] = useState(props.listData)
     const [place, setPlace] = useState("")
     const [host, setHost] = useState("")
+
+    useEffect(() => {
+        setListData(props.listData)
+    },[props])
 
     const onClickSearch = () => {
         setIsSearchActivated(!isSearchActivated)
@@ -20,9 +25,15 @@ function SearchBar(props){
         props.onHostChange(event.target.value)
     }
 
+    const onClickOverlay = (event) => {
+        if(event.target.id === 'overlay' || event.target.id === 'searchBar'){
+            setIsSearchActivated(false)
+        }
+    }
+
     return (
-        <div className={`search-overlay ${isSearchActivated ? 'is-activated' : ''}`}>
-            <div className="search-bar-container bg-primary contrast-text d-flex justify-content-space-between">
+        <div id="overlay" className={`search-overlay ${isSearchActivated ? 'is-activated' : ''}`} onClick = {(event) => {onClickOverlay(event)}}>
+            <div id="searchBar" className="search-bar-container bg-primary contrast-text d-flex justify-content-space-between">
                 <div className="image-container d-flex align-items-center justify-content-center">
                     <img src={Logo}></img>
                 </div>
@@ -30,10 +41,11 @@ function SearchBar(props){
                     <div className="input-holder">
                         <input className="places" type="text" value={place} onChange={onPlaceChange}></input>
                         <ul>
-                            <li>teste</li>
-                            <li>teste</li>
-                            <li>teste</li>
-                            <li>teste</li>
+                            {
+                                listData.map((list) => {
+                                    return <li>{list.title}</li>
+                                })
+                            }
                         </ul>
                     </div>
                     <div className="input-holder">

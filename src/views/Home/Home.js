@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import './Home.css'
 function Home() {
   const [stays, setStays] = useState([])
+  const [listData, setListData] = useState([])
 
   useEffect(() => {
     startStaysData()
@@ -24,8 +25,20 @@ function Home() {
     });
   }
 
-  const onPlaceChange = (place) => {
-    console.log(place)
+  const onPlaceChange = (placeString) => {
+    const filteredStays = stays.filter(
+      (stay) => stay.country.toLowerCase().includes(placeString) || stay.city.toLowerCase().includes(placeString)
+      )
+      .map((filteredStay) => {
+        return {
+          title: filteredStay.city + ', ' + filteredStay.country,
+          value: {
+            country: filteredStay.country,
+            city: filteredStay.city
+          }
+        }
+      })
+    setListData(filteredStays)
   }
 
   const onHostChange = (host) => {
@@ -34,7 +47,7 @@ function Home() {
 
   return (
     <section className="main-container bg-primary contrast-text">
-      <SearchBar onPlaceChange={onPlaceChange} onHostChange={onHostChange}></SearchBar>
+      <SearchBar onPlaceChange={onPlaceChange} onHostChange={onHostChange} listData = {listData}></SearchBar>
       <div className="cards-container">
         {
           stays.map((stay) => {
