@@ -1,5 +1,7 @@
 import SearchBar from '../../components/SearchBar/SearchBar'
 import {useState, useEffect} from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 import './Home.css'
 function Home() {
   const [stays, setStays] = useState([])
@@ -57,14 +59,20 @@ function Home() {
                       </figure>
                       <div className="type-container">
                         <div className="main-info">
-                          {
-                            stay.superHost 
-                              ? <h5 className="super-host">
-                                  SUPER HOST
-                                </h5> 
-                              : ''
-                          }
-                          <h6>{stay.type}</h6>
+                          <div className="d-flex">
+                            {
+                              stay.superHost 
+                                ? <h5 className="super-host">
+                                    SUPER HOST
+                                  </h5> 
+                                : ''
+                            }
+                            <h6>{stay.type}</h6>
+                          </div>
+                          <div className="rating">
+                            <FontAwesomeIcon icon={faStar} style={{color:'#EB5757'}}/>
+                            <p>{stay.rating}</p>
+                          </div>
                         </div>
                         <h4 className="title">{stay.title}</h4>
                       </div>

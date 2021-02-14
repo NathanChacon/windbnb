@@ -35,6 +35,7 @@
 .card-container .type-container .main-info{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 60%;
 }
 
@@ -50,6 +51,19 @@
     text-align: center;
     border-radius: 6px;
     margin-right: 5px;
+}
+
+.rating{
+    margin-right: 14px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+.rating p {
+    padding: 0;
+    margin:0;
+    margin-left: 5px;
 }
 
 @media (max-width : 768px) {
