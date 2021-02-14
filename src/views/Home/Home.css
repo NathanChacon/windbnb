@@ -1,10 +1,53 @@
 .cards-container{
     width: 100%;
     min-height: 100vh;
-    padding-top: 210px;
+    padding-top: 110px;
     padding-right: 20px;
     padding-left: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-auto-rows: auto;
+    row-gap: 20px;
+    column-gap: 5px;
+}
+
+.card-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-container figure{
+    width: 100%;
+    height: 80%;
+    border-radius: 14px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.card-container figure img{
+    width: 100%; 
+    height: 100%;
+}
+
+.card-container .type-container .main-info{
+    display: flex;
+    align-items: center;
+    height: 60%;
+}
+
+.card-container .title{
+    padding: 0;
+    margin: 0;
+}
+
+.card-container .super-host{
+    border: 1px solid black;
+    font-size: 0.7rem;
+    padding: 2px;
+    text-align: center;
+    border-radius: 6px;
+    margin-right: 5px;
 }
