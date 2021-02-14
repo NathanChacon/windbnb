@@ -83,3 +83,19 @@
 .search-overlay.is-activated .search-inputs-container .input-holder ul{
     display: block;
 }
+
+.search-button{
+    border-radius: 16px;
+}
+
+.search-overlay.is-activated .search-button{
+    background-color: #EB5757;
+}
+
+.search-overlay.is-activated .search-icon{
+    color: white;
+}
+
+.search-icon{
+    color: #EB5757;
+}

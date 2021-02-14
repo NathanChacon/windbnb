@@ -1,7 +1,7 @@
 import Logo from '../../assets/images/logo.svg'
 import {useState, useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import { faMapMarkerAlt, faSearch} from '@fortawesome/free-solid-svg-icons'
 import  './SearchBar.css'
 function SearchBar(props){
     const [isSearchActivated, setIsSearchActivated] = useState(false)
@@ -62,7 +62,9 @@ function SearchBar(props){
                             <li>teste</li>
                         </ul>
                     </div>
-                    <button onClick={() => {onClickSearch()}}>search</button>
+                    <button onClick={() => {onClickSearch()}} className="search-button">
+                        <FontAwesomeIcon className="search-icon" icon={faSearch}/>
+                    </button>
                 </div>
             </div>
         </div>
