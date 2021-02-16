@@ -14,8 +14,6 @@
 .card-container{
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .card-container figure{
@@ -32,39 +30,6 @@
     height: 100%;
 }
 
-.card-container .type-container .main-info{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60%;
-}
-
-.card-container .title{
-    padding: 0;
-    margin: 0;
-}
-
-.card-container .super-host{
-    border: 1px solid black;
-    font-size: 0.7rem;
-    padding: 2px;
-    text-align: center;
-    border-radius: 6px;
-    margin-right: 5px;
-}
-
-.rating{
-    margin-right: 14px;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-}
-
-.rating p {
-    padding: 0;
-    margin:0;
-    margin-left: 5px;
-}
 
 @media (max-width : 768px) {
     .cards-container{

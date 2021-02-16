@@ -6,7 +6,7 @@ import  './SearchBar.css'
 function SearchBar(props){
     const [isSearchActivated, setIsSearchActivated] = useState(false)
     const [listData, setListData] = useState(props.listData)
-    const [place, setPlace] = useState("")
+    const [place, setPlace] = useState({string: '', country:null, city:null})
     const [host, setHost] = useState("")
 
     useEffect(() => {
@@ -14,12 +14,25 @@ function SearchBar(props){
     },[props])
 
     const onClickSearch = () => {
-        setIsSearchActivated(!isSearchActivated)
+        if(isSearchActivated){
+            console.log(place)
+            props.onSearch(place, host)
+        }
+        setIsSearchActivated(true)
     }
 
     const onPlaceChange = (event) => {
-        setPlace(event.target.value)
+        console.log(event.target.value)
+        setPlace({...place, string: event.target.value})
         props.onPlaceChange(event.target.value)
+    }
+
+    const onClickPlace = (value) => {
+        setPlace({...place, country: value.country, city: value.city})
+    }
+
+    const onClickHost = (value) => {
+
     }
 
     const onHostChange = (event) => {
@@ -41,11 +54,11 @@ function SearchBar(props){
                 </div>
                 <div className="search-inputs-container bg-primary d-flex">
                     <div className="input-holder">
-                        <input className="places" type="text" value={place} onChange={onPlaceChange}></input>
+                        <input className="places" type="text" value={place.string} onChange={onPlaceChange}></input>
                         <ul>
                             {
                                 listData.map((list) => {
-                                    return <li>
+                                    return <li className="list" onClick={() => {onClickPlace(list)}}>
                                                 <FontAwesomeIcon style={{marginRight:'5px'}} icon={faMapMarkerAlt} />
                                                 {list.title}
                                             </li>
@@ -56,10 +69,10 @@ function SearchBar(props){
                     <div className="input-holder">
                         <input className="hosts" type="text" value={host} onChange={onHostChange}></input>
                         <ul>
-                            <li>teste</li>
-                            <li>teste</li>
-                            <li>teste</li>
-                            <li>teste</li>
+                            <li className="list">teste</li>
+                            <li className="list">teste</li>
+                            <li className="list">teste</li>
+                            <li className="list">teste</li>
                         </ul>
                     </div>
                     <button onClick={() => {onClickSearch()}} className="search-button">
