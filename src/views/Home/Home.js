@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import './Home.css'
 function Home() {
+  const [dataSource, setDataSource] = useState([])
   const [stays, setStays] = useState([])
   const [listData, setListData] = useState([])
 
@@ -22,13 +23,13 @@ function Home() {
       return response.json();
     })
     .then(function(data) {
-      console.log('teste', data)
+      setDataSource(data)
       setStays(data)
     });
   }
 
   const onPlaceChange = (placeString) => {
-    const filteredStays = filterStaysByString(stays, placeString)
+    const filteredStays = filterStaysByString(dataSource, placeString)
     const listValues = filteredStays.map((filteredStay) => {
       return {
         title: filteredStay.city + ', ' + filteredStay.country,
@@ -60,8 +61,7 @@ function Home() {
   }
 
   const onSearch = (place, host) => {
-    console.log(place)
-    const filteredStays = filterStaysByString(stays, place.string)
+    const filteredStays = filterStaysByString(dataSource, place.string)
     setStays(filteredStays)
   }
 
