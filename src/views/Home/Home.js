@@ -70,15 +70,13 @@ function Home() {
     return filteredStays
   }
 
-  const filterByHost = () => {
+  const filterStaysByNumberOfHosts = (stays, number) => {
+    const filteredStays = stays.filter((stay) => number <= stay.maxGuests)
 
+    return filteredStays
   }
 
-  const onHostChange = (host) => {
-    console.log(host)
-  }
-
-  const onSearch = (place, host) => {
+  const onSearch = (place, hostsNumber) => {
     let filteredStays
     if(place.country && place.city){
       filteredStays = filterStaysByPlace(staysDataSource, place.country, place.city)
@@ -86,13 +84,16 @@ function Home() {
     else{
       filteredStays = filterStaysByString(staysDataSource, place.string)
     }
+    if(!isNaN(parseInt(hostsNumber))){
+      filteredStays = filterStaysByNumberOfHosts(filteredStays, hostsNumber)
+    }
 
     setStays(filteredStays)
   }
 
   return (
     <section className="main-container bg-primary contrast-text">
-      <SearchBar onPlaceChange={onPlaceChange} onHostChange={onHostChange} listData = {listData} onSearch={onSearch}></SearchBar>
+      <SearchBar onPlaceChange={onPlaceChange} listData = {listData} onSearch={onSearch}></SearchBar>
       <div className="cards-container">
         {
           stays.map((stay) => {

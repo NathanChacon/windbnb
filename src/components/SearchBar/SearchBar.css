@@ -32,8 +32,15 @@
 
 .search-inputs-container .input-holder{
     width: 40%;
+    padding-top: 5px;
+    padding-left: 10px;
     border-right:solid #F2F2F2;
     position: relative;
+}
+
+.search-inputs-container .input-holder label{
+    font-weight: bold;
+    font-size: 0.9rem;
 }
 
 .search-inputs-container .input-holder input{

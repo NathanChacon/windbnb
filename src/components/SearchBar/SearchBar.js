@@ -14,10 +14,10 @@ function SearchBar(props){
     },[props])
 
     const onClickSearch = () => {
-        if(isSearchActivated){
-            props.onSearch(place, host)
-        }
-        setIsSearchActivated(true)
+            if(isSearchActivated){
+                props.onSearch(place, host)
+            }
+            setIsSearchActivated(!isSearchActivated)
     }
 
     const onPlaceChange = (event) => {
@@ -26,7 +26,6 @@ function SearchBar(props){
     }
 
     const onClickPlace = (value) => {
-        console.log(value)
         setPlace({...place, country: value.value.country, city: value.value.city, string: value.title})
     }
 
@@ -36,7 +35,6 @@ function SearchBar(props){
 
     const onHostChange = (event) => {
         setHost(event.target.value)
-        props.onHostChange(event.target.value)
     }
 
     const onClickOverlay = (event) => {
@@ -52,8 +50,9 @@ function SearchBar(props){
                     <img src={Logo}></img>
                 </div>
                 <div className="search-inputs-container bg-primary d-flex">
-                    <div className="input-holder">
-                        <input className="places" type="text" value={place.string} onChange={onPlaceChange}></input>
+                    <div className="input-holder d-flex col">
+                        <label for="places">location</label>
+                        <input id="places" className="places" type="text" value={place.string} onChange={onPlaceChange}></input>
                         <ul>
                             {
                                 listData.map((list) => {
@@ -65,14 +64,9 @@ function SearchBar(props){
                             }
                         </ul>
                     </div>
-                    <div className="input-holder">
-                        <input className="hosts" type="text" value={host} onChange={onHostChange}></input>
-                        <ul>
-                            <li className="list">teste</li>
-                            <li className="list">teste</li>
-                            <li className="list">teste</li>
-                            <li className="list">teste</li>
-                        </ul>
+                    <div className="input-holder d-flex col">
+                        <label for="hosts" for="places">guests</label>
+                        <input id="hosts" className="hosts" type="number" value={host} onChange={onHostChange}></input>
                     </div>
                     <button onClick={() => {onClickSearch()}} className="search-button">
                         <FontAwesomeIcon className="search-icon" icon={faSearch}/>
