@@ -4,7 +4,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import './Home.css'
 function Home() {
-  const [dataSource, setDataSource] = useState([])
+  const [staysDataSource, setStaysDataSource] = useState([])
+  const [placesListDataSource, setPlacesListDataSource] = useState([
+      {
+        city: "Helsinki",
+        country: "Finland"
+      },
+      {
+        city: "Oulu",
+        country: "Finland"
+      },
+      {
+        city: "Vaasa",
+        country: "Finland"
+      },
+      {
+        city: "Turku",
+        country: "Finland"
+      }
+  ]) 
   const [stays, setStays] = useState([])
   const [listData, setListData] = useState([])
 
@@ -23,13 +41,13 @@ function Home() {
       return response.json();
     })
     .then(function(data) {
-      setDataSource(data)
+      setStaysDataSource(data)
       setStays(data)
     });
   }
 
   const onPlaceChange = (placeString) => {
-    const filteredStays = filterStaysByString(dataSource, placeString)
+    const filteredStays = filterStaysByString(placesListDataSource, placeString)
     const listValues = filteredStays.map((filteredStay) => {
       return {
         title: filteredStay.city + ', ' + filteredStay.country,
@@ -43,12 +61,12 @@ function Home() {
   }
 
   const filterStaysByString = (stays, string) => {
-    const filteredStays = stays.filter((stay) => stay.country.toLowerCase().includes(string) || stay.city.toLowerCase().includes(string))
+    const filteredStays = stays.filter((stay) => stay.country.toLowerCase().includes(string.toLowerCase()) || stay.city.toLowerCase().includes(string.toLowerCase()))
     return filteredStays
   }
 
   const filterStaysByPlace = (stays, country, city) => {
-    const filteredStays = stays.filter((stay) => stay.country.toLowerCase().includes(country) || stay.city.toLowerCase().includes(city))
+    const filteredStays = stays.filter((stay) => stay.country.toLowerCase().includes(country.toLowerCase()) && stay.city.toLowerCase().includes(city.toLowerCase()))
     return filteredStays
   }
 
@@ -61,7 +79,14 @@ function Home() {
   }
 
   const onSearch = (place, host) => {
-    const filteredStays = filterStaysByString(dataSource, place.string)
+    let filteredStays
+    if(place.country && place.city){
+      filteredStays = filterStaysByPlace(staysDataSource, place.country, place.city)
+    }
+    else{
+      filteredStays = filterStaysByString(staysDataSource, place.string)
+    }
+
     setStays(filteredStays)
   }
 

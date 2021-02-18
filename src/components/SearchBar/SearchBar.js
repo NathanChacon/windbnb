@@ -15,20 +15,19 @@ function SearchBar(props){
 
     const onClickSearch = () => {
         if(isSearchActivated){
-            console.log(place)
             props.onSearch(place, host)
         }
         setIsSearchActivated(true)
     }
 
     const onPlaceChange = (event) => {
-        console.log(event.target.value)
-        setPlace({...place, string: event.target.value})
+        setPlace({...place, string: event.target.value, country: null, city: null})
         props.onPlaceChange(event.target.value)
     }
 
     const onClickPlace = (value) => {
-        setPlace({...place, country: value.country, city: value.city})
+        console.log(value)
+        setPlace({...place, country: value.value.country, city: value.value.city, string: value.title})
     }
 
     const onClickHost = (value) => {
