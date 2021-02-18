@@ -29,6 +29,14 @@
     height: 100%;
 }
 
+.teste{
+   opacity: 0;
+}
+
+.teste2{
+    opacity: 1;
+}
+
 
 @media (max-width : 768px) {
     .cards-container{

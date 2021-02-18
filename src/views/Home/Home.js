@@ -41,8 +41,14 @@ function Home() {
       return response.json();
     })
     .then(function(data) {
-      setStaysDataSource(data)
-      setStays(data)
+      const dataAux = data.map((data, index) => {
+        data.id = index
+        data.isImageLoaded = false
+        return data
+      })
+      
+      setStaysDataSource(dataAux)
+      setStays(dataAux)
     });
   }
 
@@ -91,6 +97,15 @@ function Home() {
     setStays(filteredStays)
   }
 
+  const onImageLoad = (value) => {
+    setStays(stays.map((stay) => {
+      if(stay.id === value.id){
+        stay.isImageLoaded = true
+      }
+      return stay
+    }))
+  }
+
   return (
     <section className="main-container bg-primary contrast-text">
       <SearchBar onPlaceChange={onPlaceChange} listData = {listData} onSearch={onSearch}></SearchBar>
@@ -99,7 +114,7 @@ function Home() {
           stays.map((stay) => {
             return <div className="card-container d-flex col">
                       <figure>
-                        <img src={stay.photo}/>
+                        <img src={stay.photo} onLoad={() => onImageLoad(stay)} className={stay.isImageLoaded ? 'teste2' : 'teste'}/>
                       </figure>
                       <div className="w-100 d-flex align-items-center justify-content-space-between">
                         <div className="d-flex">
