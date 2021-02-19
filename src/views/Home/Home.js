@@ -1,7 +1,8 @@
 import SearchBar from '../../components/SearchBar/SearchBar'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, Fragment} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import Skeleton from 'react-loading-skeleton';
 import './Home.css'
 function Home() {
   const [staysDataSource, setStaysDataSource] = useState([])
@@ -48,7 +49,7 @@ function Home() {
       })
       
       setStaysDataSource(dataAux)
-      setStays(dataAux)
+      setStays(dataAux.map((data) =>{ return {...data}}))
     });
   }
 
@@ -98,12 +99,15 @@ function Home() {
   }
 
   const onImageLoad = (value) => {
-    setStays(stays.map((stay) => {
-      if(stay.id === value.id){
-        stay.isImageLoaded = true
-      }
-      return stay
-    }))
+    setTimeout(() => {
+      setStays(stays.map((stay) => {
+        if(stay.id === value.id){
+          stay.isImageLoaded = true
+        }
+        return stay
+      }))
+    }, 500)
+
   }
 
   return (
@@ -112,25 +116,36 @@ function Home() {
       <div className="cards-container">
         {
           stays.map((stay) => {
-            return <div className="card-container d-flex col">
-                      <figure>
-                        <img src={stay.photo} onLoad={() => onImageLoad(stay)} className={stay.isImageLoaded ? 'teste2' : 'teste'}/>
+            return <div className="card-container d-flex col" >
+                      {
+                        stay.isImageLoaded
+                        ? ''
+                        : <figure className="img-skeleton"><Skeleton style={{width:'100%', height:'100%'}}></Skeleton></figure>
+                      }
+                      <figure className={stay.isImageLoaded ? 'isVisible' : 'isHidden'}>
+                        <img src={stay.photo} onLoad={() => onImageLoad(stay)}/>
                       </figure>
-                      <div className="w-100 d-flex align-items-center justify-content-space-between">
-                        <div className="d-flex">
-                          {
-                            stay.superHost 
-                                ? <h5 className="super-host">SUPER HOST</h5> 
-                                : ''
-                          }
-                          <h6>{stay.type}</h6>
-                        </div>
-                        <div className="d-flex">
-                          <FontAwesomeIcon icon={faStar} style={{color:'#EB5757'}}/>
-                          <p style={{padding:0, margin:0}}>{stay.rating}</p>
-                        </div>
-                      </div>
-                      <h4 className="title">{stay.title}</h4>
+                      {
+                        stay.isImageLoaded 
+                        ?<Fragment>
+                          <div className="w-100 d-flex align-items-center justify-content-space-between">
+                              <div className="d-flex">
+                                {
+                                  stay.superHost 
+                                      ? <h5 className="super-host">SUPER HOST</h5> 
+                                      : ''
+                                }
+                                <h6>{stay.type}</h6>
+                              </div>
+                              <div className="d-flex">
+                                <FontAwesomeIcon icon={faStar} style={{color:'#EB5757'}}/>
+                                <p style={{padding:0, margin:0}}>{stay.rating}</p>
+                              </div>
+                            </div>
+                            <h4 className="title">{stay.title}</h4>
+                         </Fragment>
+                         :<Skeleton count={2}></Skeleton>
+                      }
                   </div>
           })
         }
