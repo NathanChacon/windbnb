@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/windbnb/static/css/main.ccb93e06.chunk.css",
+    "main.js": "/windbnb/static/js/main.d97fb42a.chunk.js",
+    "main.js.map": "/windbnb/static/js/main.d97fb42a.chunk.js.map",
+    "runtime-main.js": "/windbnb/static/js/runtime-main.5d15dd57.js",
+    "runtime-main.js.map": "/windbnb/static/js/runtime-main.5d15dd57.js.map",
+    "static/js/2.6bf63f13.chunk.js": "/windbnb/static/js/2.6bf63f13.chunk.js",
+    "static/js/2.6bf63f13.chunk.js.map": "/windbnb/static/js/2.6bf63f13.chunk.js.map",
+    "static/js/3.5e21c212.chunk.js": "/windbnb/static/js/3.5e21c212.chunk.js",
+    "static/js/3.5e21c212.chunk.js.map": "/windbnb/static/js/3.5e21c212.chunk.js.map",
+    "index.html": "/windbnb/index.html",
+    "static/css/main.ccb93e06.chunk.css.map": "/windbnb/static/css/main.ccb93e06.chunk.css.map",
+    "static/js/2.6bf63f13.chunk.js.LICENSE.txt": "/windbnb/static/js/2.6bf63f13.chunk.js.LICENSE.txt",
+    "static/media/logo.beef9462.svg": "/windbnb/static/media/logo.beef9462.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5d15dd57.js",
+    "static/js/2.6bf63f13.chunk.js",
+    "static/css/main.ccb93e06.chunk.css",
+    "static/js/main.d97fb42a.chunk.js"
+  ]
+}
