@@ -49,7 +49,7 @@ function Home() {
       })
       
       setStaysDataSource(dataAux)
-      setStays(dataAux.map((data) =>{ return {...data}}))
+      setStays(dataAux)
     });
   }
 
@@ -91,6 +91,7 @@ function Home() {
     else{
       filteredStays = filterStaysByString(staysDataSource, place.string)
     }
+
     if(!isNaN(parseInt(hostsNumber))){
       filteredStays = filterStaysByNumberOfHosts(filteredStays, hostsNumber)
     }
@@ -115,8 +116,8 @@ function Home() {
       <SearchBar onPlaceChange={onPlaceChange} listData = {listData} onSearch={onSearch}></SearchBar>
       <div className="cards-container">
         {
-          stays.map((stay) => {
-            return <div className="card-container d-flex col" >
+          stays.map((stay, index) => {
+            return <div className="card-container d-flex col" key={index}> 
                       {
                         stay.isImageLoaded
                         ? ''
@@ -129,13 +130,13 @@ function Home() {
                         stay.isImageLoaded 
                         ?<Fragment>
                           <div className="w-100 d-flex align-items-center justify-content-space-between">
-                              <div className="d-flex">
+                              <div className="d-flex align-items-center">
                                 {
                                   stay.superHost 
                                       ? <h5 className="super-host">SUPER HOST</h5> 
                                       : ''
                                 }
-                                <h6>{stay.type}</h6>
+                                <h6 style={{color:'#828282'}}>{stay.type}</h6>
                               </div>
                               <div className="d-flex">
                                 <FontAwesomeIcon icon={faStar} style={{color:'#EB5757'}}/>

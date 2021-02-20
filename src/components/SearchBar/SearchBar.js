@@ -47,12 +47,12 @@ function SearchBar(props){
         <div id="overlay" className={`search-overlay ${isSearchActivated ? 'is-activated' : ''}`} onClick = {(event) => {onClickOverlay(event)}}>
             <div id="searchBar" className="search-bar-container bg-primary contrast-text d-flex justify-content-space-between">
                 <div className="image-container d-flex align-items-center justify-content-center">
-                    <img src={Logo}></img>
+                    <img src={Logo} style={{width:'100%', height:'100%'}}></img>
                 </div>
                 <div className="search-inputs-container bg-primary d-flex">
                     <div className="input-holder d-flex col">
-                        <label for="places">location</label>
-                        <input id="places" className="places" type="text" value={place.string} onChange={onPlaceChange}></input>
+                        <label htmlFor="places">location</label>
+                        <input id="places" className="places" type="search" autoComplete="off" value={place.string} onChange={onPlaceChange}></input>
                         <ul>
                             {
                                 listData.map((list) => {
@@ -65,7 +65,7 @@ function SearchBar(props){
                         </ul>
                     </div>
                     <div className="input-holder d-flex col">
-                        <label for="hosts" for="places">guests</label>
+                        <label htmlFor="hosts">guests</label>
                         <input id="hosts" className="hosts" type="number" value={host} onChange={onHostChange}></input>
                     </div>
                     <button onClick={() => {onClickSearch()}} className="search-button">
